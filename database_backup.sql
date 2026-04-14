@@ -198,6 +198,8 @@ CREATE TABLE public.users (
     CONSTRAINT users_role_check CHECK (((role)::text = ANY ((ARRAY['CUSTOMER'::character varying, 'ADMIN'::character varying])::text[])))
 );
 
+ALTER TABLE public.users ADD COLUMN change_password_token VARCHAR(255);
+
 
 ALTER TABLE public.users OWNER TO postgres;
 
