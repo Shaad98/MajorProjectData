@@ -198,7 +198,25 @@ CREATE TABLE public.users (
     CONSTRAINT users_role_check CHECK (((role)::text = ANY ((ARRAY['CUSTOMER'::character varying, 'ADMIN'::character varying])::text[])))
 );
 
-ALTER TABLE public.users ADD COLUMN change_password_token VARCHAR(255);
+ALTER TABLE public.users 
+ADD COLUMN address TEXT,
+ADD COLUMN city VARCHAR(255),
+ADD COLUMN state VARCHAR(255),
+ADD COLUMN pincode VARCHAR(10),
+ADD COLUMN change_password_token VARCHAR(255);
+
+-- CREATE TABLE public.addresses (
+--     address_id BIGSERIAL PRIMARY KEY,
+--     street_address TEXT NOT NULL,
+--     city VARCHAR(255) NOT NULL,
+--     state VARCHAR(255) NOT NULL,
+--     pincode VARCHAR(6),
+--     user_id BIGINT NOT NULL UNIQUE,
+--     CONSTRAINT fk_user FOREIGN KEY (user_id)
+--         REFERENCES public.users(id)
+--         ON DELETE CASCADE
+-- );
+
 
 
 ALTER TABLE public.users OWNER TO postgres;
